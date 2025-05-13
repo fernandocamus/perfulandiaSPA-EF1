@@ -30,5 +30,4 @@ public class CorreoService {
     public void delete(Integer idCorreo) { 
         correoRepository.deleteById(idCorreo);
     }
-    
 }

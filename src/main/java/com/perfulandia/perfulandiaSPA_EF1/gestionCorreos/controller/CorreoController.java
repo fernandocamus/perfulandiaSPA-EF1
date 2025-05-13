@@ -30,7 +30,8 @@ public class CorreoController {
     }
 
 
-    @PostMapping ResponseEntity<Correo> guardarCorreo(@RequestBody Correo correo) {
+    @PostMapping 
+    ResponseEntity<Correo> guardarCorreo(@RequestBody Correo correo) {
         Correo nuevoCorreo = correoService.save(correo);
         return ResponseEntity.ok(nuevoCorreo);
     }
