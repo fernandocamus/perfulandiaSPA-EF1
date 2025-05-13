@@ -19,13 +19,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPedido;
 
-    @ManyToOne
-    @JoinColumn(name = "idCorreo", nullable=false)
-    private Correo correo;
-
-    //@Column(name = "idUsuario", nullable=false)
-    //private Usuario usuario;
-
     //@Column(name = "idInventario", nullable=false)
     //private Inventario inventario;
 
@@ -37,4 +30,13 @@ public class Pedido {
 
     @Column(nullable=false)
     private String metodoPago;
+
+    @ManyToOne
+    @JoinColumn(name = "idCorreo", nullable=false)
+    private Correo correo;
+
+    //@Column(name = "idUsuario", nullable=false)
+    //private Usuario usuario;
+
+
 }

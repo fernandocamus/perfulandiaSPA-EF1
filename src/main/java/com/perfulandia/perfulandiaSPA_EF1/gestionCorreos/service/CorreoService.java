@@ -23,9 +23,15 @@ public class CorreoService {
         return correoRepository.findById(id).get();
     }
 
-    //GUARDAR Y ELIMINAR CORREO
+    //GUARDAR, ACTUALIZAR Y ELIMINAR CORREO
     public Correo save(Correo correo) { 
         return correoRepository.save(correo);   
+    }
+    public Correo update(Correo correo) {
+        if (correoRepository.existsById(correo.getIdCorreo())) {
+            return correoRepository.save(correo);
+        } 
+        return null;
     }
     public void delete(Integer idCorreo) { 
         correoRepository.deleteById(idCorreo);

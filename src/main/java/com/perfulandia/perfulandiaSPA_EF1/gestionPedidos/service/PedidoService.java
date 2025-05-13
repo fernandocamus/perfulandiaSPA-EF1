@@ -23,9 +23,12 @@ public class PedidoService {
         return pedidoRepository.findById(id).get();
     }
 
-    //GUARDAR Y ELIMINAR PEDIDO
+    //GUARDAR, ACTUALIZAR Y ELIMINAR PEDIDO
     public Pedido save(Pedido pedido) { 
         return pedidoRepository.save(pedido);   
+    }
+    public void update(Pedido pedido) { 
+        pedidoRepository.save(pedido);
     }
     public void delete(Integer idPedido) { 
         pedidoRepository.deleteById(idPedido);
