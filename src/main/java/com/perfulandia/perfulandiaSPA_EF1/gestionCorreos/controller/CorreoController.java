@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/V1/correos")
+@RequestMapping("/api/gestionCorreos/correos") //URL base
 public class CorreoController {
 
     @Autowired
@@ -27,4 +29,9 @@ public class CorreoController {
         return ResponseEntity.ok(correos);
     }
 
+
+    @PostMapping ResponseEntity<Correo> guardarCorreo(@RequestBody Correo correo) {
+        Correo nuevoCorreo = correoService.save(correo);
+        return ResponseEntity.ok(nuevoCorreo);
+    }
 }

@@ -28,6 +28,12 @@ public class Correo {
     private String cuerpo;
 
     @Column(nullable=true)
-    private String ArchivoAdjunto;
+    private String archivoAdjunto;
+
+    @Column(nullable=true)
+    private String fechaEnvio;
+
+    @Column(nullable=true)
+    private Boolean estadoEnvio;
 
 }

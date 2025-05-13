@@ -13,9 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface CorreoRepository extends JpaRepository<Correo, Integer> { // Cambia el tipo de ID según tu entidad
 
     // Aqui proporcionaremos métodos CRUD y consultas personalizadas
-    @Query("SELECT c FROM Correo c WHERE c.destinatario = destinatario")
+    @Query("SELECT c FROM Correo c WHERE c.destinatario = :destinatario")
     List<Correo> buscarPorDestinatario(@Param("destinatario")String destinatario);
-
-    
 
 }
