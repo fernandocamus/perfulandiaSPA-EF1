@@ -1,6 +1,7 @@
 package com.perfulandia.perfulandiaSPA_EF1.gestionPedidos.model;
 
 import com.perfulandia.perfulandiaSPA_EF1.gestionCorreos.model.Correo;
+import com.perfulandia.perfulandiaSPA_EF1.gestionProductos.model.Producto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +20,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPedido;
 
-    //@Column(name = "idInventario", nullable=false)
-    //private Inventario inventario;
+    @ManyToOne
+    @JoinColumn(name = "idProducto", nullable=false)
+    private Producto producto;
 
     @Column(nullable=false)
     private double cantidadProductos;
