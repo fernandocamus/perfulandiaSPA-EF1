@@ -1,5 +1,6 @@
 package com.perfulandia.perfulandiaSPA_EF1.gestionPedidos.model;
 
+import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.model.Usuario;
 import com.perfulandia.perfulandiaSPA_EF1.gestionCorreos.model.Correo;
 import com.perfulandia.perfulandiaSPA_EF1.gestionProductos.model.Producto;
 import jakarta.persistence.*;
@@ -37,8 +38,9 @@ public class Pedido {
     @JoinColumn(name = "idCorreo", nullable=false)
     private Correo correo;
 
-    //@Column(name = "idUsuario", nullable=false)
-    //private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable=false)
+    private Usuario usuario;
 
 
 }

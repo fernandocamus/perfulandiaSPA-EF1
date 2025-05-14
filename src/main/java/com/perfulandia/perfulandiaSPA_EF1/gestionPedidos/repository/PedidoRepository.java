@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> { 
 
     @Query("SELECT p FROM Pedido p WHERE p.correo.idCorreo = :idCorreo")
-    List<Pedido> buscarPorIdCorreo(@Param("idCorreo") Integer idCorreo);
+    List<Pedido> buscarPorIdPedido(@Param("idCorreo") Integer idCorreo);
 
 }

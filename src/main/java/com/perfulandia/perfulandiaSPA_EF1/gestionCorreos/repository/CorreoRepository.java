@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CorreoRepository extends JpaRepository<Correo, Integer> {
 
-    @Query("SELECT c FROM Correo c WHERE c.destinatario = :destinatario")
-    List<Correo> buscarPorDestinatario(@Param("destinatario")String destinatario);
+    @Query("SELECT c FROM Correo c WHERE c.idCorreo = :idCorreo")
+    List<Correo> buscarPorIdCorreo(@Param("idCorreo")String idCorreo);
 
 }
