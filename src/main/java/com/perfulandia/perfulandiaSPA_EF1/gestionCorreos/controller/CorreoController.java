@@ -31,7 +31,7 @@ public class CorreoController {
         return ResponseEntity.ok("Correo enviado a: " + correo.getDestinatario());  
     }
 
-    //BUSCAR CORREO Y BUSCAR CORREO POR ID
+    //BUSCAR CORREO Y BUSCAR CORREO POR ID EN ESPECIFICO
     @GetMapping()
     public ResponseEntity<List<Correo>> ListarCorreos() {
         List<Correo> correos = correoService.buscarTodosCorreos();
