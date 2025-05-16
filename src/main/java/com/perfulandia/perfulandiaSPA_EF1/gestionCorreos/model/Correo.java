@@ -24,16 +24,9 @@ public class Correo {
     @Column(nullable=false)
     private String asunto; 
 
-    @Column(nullable=false)
+    @Column(nullable=false, length = 1000)
     private String cuerpo;
 
     @Column(nullable=true)
     private String archivoAdjunto;
-
-    @Column(nullable=true)
-    private String fechaEnvio;
-
-    @Column(nullable=true)
-    private Boolean estadoEnvio;
-
 }
