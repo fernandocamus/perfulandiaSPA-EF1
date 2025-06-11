@@ -15,16 +15,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/gestionCorreos/correos") //URL base
+@Tag(name = "Correos", description = "Operaciones relacionadas con el envío y gestión correos")
 public class CorreoController {
 
     @Autowired
     private CorreoService correoService;
 
     //GUARDAR Y ENVIAR CORREO
+    @Operation(summary = "Enviar y guardar correo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Correo enviado correctamente")
+    })
     @PostMapping 
     public ResponseEntity<String> guardarEnviar(@RequestBody Correo correo) {
         correoService.save(correo);
@@ -33,6 +43,11 @@ public class CorreoController {
     }
 
     //BUSCAR CORREO Y BUSCAR CORREO POR ID
+    @Operation(summary = "Listar todos los correos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Correos obtenidos correctamente"),
+            @ApiResponse(responseCode = "204", description = "No hay correos tegistrados")
+    })
     @GetMapping()
     public ResponseEntity<List<Correo>> ListarCorreos() {
         List<Correo> correos = correoService.buscarTodosCorreos();
@@ -42,6 +57,12 @@ public class CorreoController {
         return ResponseEntity.ok(correos);
     }
 
+    //BUSCAR POR ID
+    @Operation(summary = "Buscar correo por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Correo encontrado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Correo no encontrado")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Correo> buscarCorreoPorId(@PathVariable Integer id) {
         Correo correo = correoService.buscarCorreoPorId(id);
@@ -52,6 +73,11 @@ public class CorreoController {
     }
     
     //ACTUALIZAR CORREO
+    @Operation(summary = "Actualizar y reenviar correo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Correo actualizado y reenviado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Correo no encontrado")
+    })
     @PutMapping
     public ResponseEntity<String> actualizarCorreo(@RequestBody Correo correo) {
         Correo correoActualizado = correoService.update(correo);
@@ -64,6 +90,11 @@ public class CorreoController {
     }
 
     //ELIMINAR CORREO
+    @Operation(summary = "Eliminar correo por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Correo eliminado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Correo no encontrado")
+    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> eliminarCorreo(@PathVariable Integer id) {
         Correo correo = correoService.buscarCorreoPorId(id);
