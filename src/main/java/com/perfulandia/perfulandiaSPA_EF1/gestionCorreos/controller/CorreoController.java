@@ -31,7 +31,7 @@ public class CorreoController {
     private CorreoService correoService;
 
     //GUARDAR Y ENVIAR CORREO
-    @Operation(summary = "Enviar y guardar correo")
+    @Operation(summary = "Crear y enviar correo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Correo enviado correctamente")
     })
@@ -42,7 +42,7 @@ public class CorreoController {
         return ResponseEntity.ok("Correo enviado a: " + correo.getDestinatario());  
     }
 
-    //BUSCAR CORREO Y BUSCAR CORREO POR ID
+    //LISTAR CORREOS
     @Operation(summary = "Listar todos los correos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Correos obtenidos correctamente"),
@@ -57,7 +57,7 @@ public class CorreoController {
         return ResponseEntity.ok(correos);
     }
 
-    //BUSCAR POR ID
+    //BUSCAR CORREO POR ID
     @Operation(summary = "Buscar correo por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Correo encontrado correctamente"),

@@ -15,16 +15,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/gestionEnvios/envios") //URL base
+@Tag(name = "Envios", description = "Operaciones relacionadas con los envíos")
 public class EnvioController {
 
     @Autowired
     private EnvioService envioService;
 
-    //BUSCAR ENVÍO
+    //GUARDAR ENVÍO
+    @Operation(summary = "Crear envío")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Envío guardado correctamente")
+    })
+    @PostMapping
+    ResponseEntity<Envio> guardarEnvio(@RequestBody Envio envio) {
+        Envio nuevoEnvio = envioService.save(envio);
+        return ResponseEntity.ok(nuevoEnvio);
+    }
+
+    //LISTAR ENVÍOS
+    @Operation(summary = "Listar todos los envíos")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Lista de envíos obtenida correctamente"),
+        @ApiResponse(responseCode = "204", description = "No hay envios registrados")
+    })
     @GetMapping()
     public ResponseEntity<List<Envio>> ListarEnvios() {
         List<Envio> envios = envioService.buscarTodosEnvios();
@@ -35,6 +57,11 @@ public class EnvioController {
     }
 
     //BUSCAR ENVÍO POR ID
+    @Operation(summary = "Buscar envío por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Envío encontrado"),
+            @ApiResponse(responseCode = "404", description = "Envío no encontrado")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Envio> buscarEnvioPorId(@PathVariable Integer id) {
         Envio envio = envioService.buscarEnvioPorId(id);
@@ -44,14 +71,12 @@ public class EnvioController {
         return ResponseEntity.ok(envio);
     }
 
-    //GUARDAR ENVÍO
-    @PostMapping
-    ResponseEntity<Envio> guardarEnvio(@RequestBody Envio envio) {
-        Envio nuevoEnvio = envioService.save(envio);
-        return ResponseEntity.ok(nuevoEnvio);
-    }
-
     //ACTUALIZAR ENVÍO
+    @Operation(summary = "Actualizar datos de envío")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Envío actualizado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Envío no encontrado")
+    })
     @PutMapping
     public ResponseEntity<Envio> actualizarEnvio(@RequestBody Envio envio) {
         Envio envioActualizado = envioService.update(envio);
@@ -63,10 +88,14 @@ public class EnvioController {
     }
 
     //ELIMINAR ENVÍO
+    @Operation(summary = "Eliminar envío por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Envío eliminado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Envío no encontrado")
+    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> eliminarEnvio(@PathVariable Integer id) {
         envioService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
 }
