@@ -68,7 +68,13 @@
 			<version>19.8.0.0</version>
 		</dependency>
 
-	<!-- Dependencias para el envio de correos -->
+		<!-- Dependencias para el Validador de Hibernate -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<!-- Dependencias para el envio de correos -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
