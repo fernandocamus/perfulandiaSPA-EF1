@@ -14,5 +14,4 @@ public interface CorreoRepository extends JpaRepository<Correo, Integer> {
 
     @Query("SELECT c FROM Correo c WHERE c.idCorreo = :idCorreo")
     List<Correo> buscarPorIdCorreo(@Param("idCorreo")String idCorreo);
-
 }
