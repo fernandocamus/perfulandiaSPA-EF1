@@ -1,26 +1,25 @@
 package com.perfulandia.perfulandiaSPA_EF1.gestionEnvios.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.perfulandia.perfulandiaSPA_EF1.gestionEnvios.model.Envio;
 import com.perfulandia.perfulandiaSPA_EF1.gestionEnvios.service.EnvioService;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-
-import java.util.List;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/gestionEnvios/envios") //URL base
@@ -36,6 +35,7 @@ public class EnvioController {
             @ApiResponse(responseCode = "200", description = "Envío guardado correctamente")
     })
     @PostMapping
+    @SuppressWarnings("unused")
     ResponseEntity<Envio> guardarEnvio(@RequestBody Envio envio) {
         Envio nuevoEnvio = envioService.save(envio);
         return ResponseEntity.ok(nuevoEnvio);
