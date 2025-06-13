@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
     @Query("SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
-    List<Producto> buscarPorIdProducto(@Param("idProducto") String idProducto);
+    List<Producto> buscarPorIdProducto(@Param("idProducto") int idProducto);
 
 }

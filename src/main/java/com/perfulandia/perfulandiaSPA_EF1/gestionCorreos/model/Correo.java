@@ -29,4 +29,9 @@ public class Correo {
 
     @Column(nullable=true)
     private String archivoAdjunto;
+
+    public void setId(long l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setId'");
+    }
 }
