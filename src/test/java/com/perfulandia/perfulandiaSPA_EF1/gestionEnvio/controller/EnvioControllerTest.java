@@ -26,6 +26,9 @@ public class EnvioControllerTest {
     @MockBean
     private EnvioService envioService;
 
+    public EnvioControllerTest() {
+    }
+
     @Test
     void testGuardarEnvio() throws Exception {
         Envio envio = new Envio();
