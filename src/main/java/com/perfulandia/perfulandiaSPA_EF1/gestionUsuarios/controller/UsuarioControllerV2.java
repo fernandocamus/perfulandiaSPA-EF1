@@ -1,23 +1,31 @@
 package com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.controller;
 
-import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.model.Usuario;
-import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.service.UsuarioService;
-import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.assemblers.UsuarioModelAssembler;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.assemblers.UsuarioModelAssembler;
+import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.model.Usuario;
+import com.perfulandia.perfulandiaSPA_EF1.gestionUsuarios.service.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/v2/gestionUsuarios/usuarios")
